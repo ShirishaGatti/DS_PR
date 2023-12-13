@@ -52,7 +52,7 @@ int enqueue(int queue[10],int *front,int *rear,int data,int len)
     }
     else
      {
-         *rear++;
+         *rear=(*rear)+1%len;
          queue[*rear]=data;
          return 1;
      }
@@ -68,13 +68,13 @@ int enqueue(int queue[10],int *front,int *rear,int data,int len)
     {
         //last ele
         val=queue[*front];
-        *front++;
+        *front=*rear=-1;
         return val;
     }
     else
      {
         val=queue[*front];
-        *front++;
+        *front=(*front+1)%len;
         return val;
      }
  }
