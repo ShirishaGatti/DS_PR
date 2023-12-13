@@ -1,0 +1,81 @@
+// Online C compiler to run C program online
+//-1 overflow and underflow
+#include <stdio.h>
+int enqueue(int[],int*,int*,int ,int);
+int dequeue(int[],int*,int*,int );
+int main() {
+    int queue[3];
+    int len=sizeof(queue)/sizeof(int);
+    int front,rear=-1;
+    int status,val,i,data,option;
+    while(1){
+    printf("Select operation to perform\n1.Enqueu\n2.Dequeue\n");
+    scanf("%d",&option);
+    
+    
+    switch(option){
+        case 1: printf("Enter value");
+                scanf("%d",&data);
+                status=enqueue(queue,&front,&rear,data,len);
+                if(status==-1){
+                    printf("Overflow\n");
+                }
+                else{
+                    printf("sucussfully inserted value\n");
+                }
+        break;
+        case 2:val=dequeue(queue,&front,&rear,len);
+                    if(val==-1){
+                        printf("Underflow\n");
+                    }
+                    else{
+                        printf("sucussfully deleted value=%d\n",val);
+                    }
+        break;
+        default:printf("Invalid");
+    }
+    }
+    return 0;
+}
+int enqueue(int queue[10],int *front,int *rear,int data,int len)
+ {
+    if(*rear==len)
+    {
+        //full
+        return -1;
+    }
+    else if(*front==-1&&*rear==-1)
+    {
+        //Empty  
+        *front,*rear=0;
+        queue[*rear]=data;
+        return 1;
+    }
+    else
+     {
+         *rear=(*rear)+1%len;
+         queue[*rear]=data;
+         return 1;
+     }
+ }
+ int dequeue(int queue[10],int *front,int *rear,int len){
+    int val;
+    if(*front==-1&&*rear==-1)
+    {
+        //Empty  
+        return -1;
+    }
+    else if(*front==*rear)
+    {
+        //last ele
+        val=queue[*front];
+        *front=*rear=-1;
+        return val;
+    }
+    else
+     {
+        val=queue[*front];
+        *front=(*front+1)%len;
+        return val;
+     }
+ }
