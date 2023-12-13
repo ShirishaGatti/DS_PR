@@ -4,13 +4,14 @@
 int enqueue(int[],int*,int*,int ,int);
 //int dequeue(int[],int,int,int );
 int main() {
-    int queue[10];
+    int queue[3];
     int len=sizeof(queue)/sizeof(int);
     int front,rear=-1;
     int status,val,i,data,option;
     while(1){
     printf("Select operation to perform\n1.Enqueu\n2.Dequeue\n");
     scanf("%d",&option);
+    
     
     switch(option){
         case 1: printf("Enter value");
@@ -24,7 +25,7 @@ int main() {
                 }
         break;
         case 2:val=dequeue(queue,&front,&rear,len);
-                    if(status==-1){
+                    if(val==-1){
                         printf("Underflow\n");
                     }
                     else{
