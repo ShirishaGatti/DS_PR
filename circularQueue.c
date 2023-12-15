@@ -1,7 +1,7 @@
 #include<stdio.h>
 int enqueue(int [],int,int,int*,int*);
 int dequeue(int[],int,int*,int*,int *);
-void main(){
+int main(){
 	int dataArray[4];
 	int size=4;
 	int count=0;
@@ -40,9 +40,10 @@ void main(){
 				}
 			   }
 			break;
-		default :return 0;
+		default :printf("Please Select Valid operation\n");
 	}
 }
+return 0;
 }
 
 //	int dequeueStatus=enqueue(dataArray,size,&count,&rear,&deletedValue);
@@ -61,8 +62,8 @@ int enqueue(int dataArray[4],int size,int data,int *count,int *rear){
 	}
 	else
 	{
-		*rear=(*rear+1)%size;
 		dataArray[*rear]=data;
+		*rear=(*rear+1)%size;
 		(*count)++;
 		return 1;
     }
@@ -70,6 +71,7 @@ int enqueue(int dataArray[4],int size,int data,int *count,int *rear){
 int dequeue(int dataArray[4],int size,int *count,int *front,int *deletedValue){
 	if(*count==0){
 		return -1;
+		exit(1);
 	}
 	else
 	{
